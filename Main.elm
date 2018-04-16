@@ -39,7 +39,7 @@ update : Msg -> Model -> (Model, Cmd Msg)
 update msg {word, clientName} =
   case msg of
     KeyPressed key ->
-      (Model word clientName, WebSocket.send server ("{\"Author\": \"Chris\", \"Body\": \"" ++ (toString (fromCode (key))) ++ "\"}"))
+      (Model word clientName, WebSocket.send server ("{\"Author\": \"" ++ clientName ++ "\", \"Body\": \"" ++ (toString (fromCode (key))) ++ "\"}"))
 
     NewMessage str ->
       (Model (getValue "Body" str) (getValue "Author" str) , Cmd.none)
